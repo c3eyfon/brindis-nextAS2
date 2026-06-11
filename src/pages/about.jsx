@@ -1,31 +1,61 @@
 import { Fragment } from "react";
+import Head from "next/head";
+import { useQuery } from "@tanstack/react-query";
+
 import Banner from "@/components/layout/Banner/Banner";
+import CocktailList from "@/components/features/cocktails/CocktailList";
 
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=80";
+  "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80";
 
-const AboutPage = () => {
+function HomePage() {
+  const {
+    data: cocktails = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["popular-cocktails"],
+    queryFn: async () => {
+      const res = await fetch(
+        `https://www.thecocktaildb.com/api/json/v2/${process.env.COCKTAILS_API_KEY}/popular.php`
+      );
+
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text || "Failed to fetch cocktails");
+      }
+
+      const data = await res.json();
+      return data.drinks ?? [];
+    },
+  });
+
   return (
     <Fragment>
+      {/* SEO Head */}
+      <Head>
+        <title>Popular Cocktails</title>
+        <meta
+          name="description"
+          content="Discover popular cocktails and find your next favourite drink."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+
       <Banner
-        title="About Us"
-        subtitle="Simple cocktail inspiration, one glass at a time"
+        title="Popular Cocktails"
+        subtitle="Discover your next favourite drink"
         backgroundImage={HERO_IMAGE}
       />
 
-      <section className="container about">
-        <h1>About Us</h1>
-
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos deserunt nemo debitis hic, unde earum reiciendis fugit magni perferendis blanditiis.
-        </p>
-
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed dignissimos corporis reprehenderit dolorum expedita, fugiat pariatur incidunt quae natus aut?
-        </p>
+      <section className="popular-cocktails">
+        {isLoading && <p>Loading cocktails...</p>}
+        {isError && <p>{error.message}</p>}
+        {!isLoading && !isError && <CocktailList cocktails={cocktails} />}
       </section>
     </Fragment>
   );
-};
+}
 
-export default AboutPage;
+export default HomePage;
