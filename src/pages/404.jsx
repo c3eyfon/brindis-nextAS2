@@ -11,7 +11,7 @@ const NotFoundPage = () => {
           4
           <Image
             src={notFound}
-            alt=""
+            alt="Page not found ghost illustration"
             aria-hidden="true"
             width={90}
             height={80}

@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import * as ga from "../lib/google-analytics";
 
 import "@/styles/scss/main.scss";
 import Layout from "@/components/layout";
