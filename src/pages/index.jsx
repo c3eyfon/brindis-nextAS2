@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Head from "next/head";
 import { useQuery } from "@tanstack/react-query";
 
 import Banner from "@/components/layout/Banner/Banner";
@@ -32,6 +33,18 @@ function HomePage() {
 
   return (
     <Fragment>
+      {/* SEO HEAD */}
+      <Head>
+        <title>Popular Cocktails</title>
+
+        <meta
+          name="description"
+          content="Discover popular cocktails and explore your next favourite drink."
+        />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+
       <Banner
         title="Popular Cocktails"
         subtitle="Discover your next favourite drink"
