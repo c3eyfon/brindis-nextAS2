@@ -24,9 +24,9 @@ const nextConfig = (phase) => {
 
   const env = {
     SERVER_NAME: (() => {
-      if (isDev) return `${process.env.NEXT_PUBLIC_CODEFEED_DEV_API_ENDPOINT}`;
+      if (isDev) return `${process.env.NEXT_PUBLIC_BRINDIS_DEV_API_ENDPOINT}`;
       if (isProd)
-        return `${process.env.NEXT_PUBLIC_CODEFEED_PROD_API_ENDPOINT}`;
+        return `${process.env.NEXT_PUBLIC_BRINDIS_PROD_API_ENDPOINT}`;
       return undefined;
     })(),
     COCKTAILS_API_KEY: process.env.COCKTAILS_API_KEY,
