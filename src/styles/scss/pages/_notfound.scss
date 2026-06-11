@@ -1,0 +1,45 @@
+@use "../abstracts/" as *;
+
+.notFoundBox {
+  margin-top: 1rem;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .twinBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: $primaryColor;
+    font-weight: normal;
+  }
+
+  .errorCode {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 2rem;
+    border-right: 2px solid $highlightColor;
+    font-size: 4em;
+    font-weight: bold;
+  }
+
+  .errorCode p {
+    margin: 0;
+    font-size: 4rem;
+    font-weight: 700;
+  }
+
+  a {
+    padding: 2rem;
+    font-size: 1em;
+    text-decoration: none;
+
+    &:hover {
+      color: $brandColor;
+    }
+  }
+}

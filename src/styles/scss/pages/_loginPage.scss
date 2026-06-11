@@ -1,0 +1,70 @@
+@use "@/styles/scss/abstracts/" as *;
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: $complementaryColor;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2.5rem;
+  background: white;
+  border: 1px solid $highlightColor 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.login-card__title {
+  margin: 0;
+  color: $primaryColor;
+}
+
+.login-card__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-card__form input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid $highlightColor;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: $brandColor;
+  }
+}
+
+.login-card__forgot {
+  align-self: flex-end;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: $brandColor;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.login-card__button {
+  margin-top: 0.5rem;
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: medium;
+  background: $brandColor;
+  color: $complementaryColor;
+  cursor: pointer;
+}

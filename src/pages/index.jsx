@@ -1,0 +1,50 @@
+import { Fragment } from "react";
+import { useQuery } from "@tanstack/react-query";
+
+import Banner from "@/components/layout/Banner/Banner";
+import CocktailList from "@/components/features/cocktails/CocktailList";
+
+const HERO_IMAGE =
+  "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80";
+
+function HomePage() {
+  const {
+    data: cocktails = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["popular-cocktails"],
+    queryFn: async () => {
+      const res = await fetch(
+        `https://www.thecocktaildb.com/api/json/v2/${process.env.COCKTAILS_API_KEY}/popular.php`,
+      );
+
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text || "Failed to fetch cocktails");
+      }
+
+      const data = await res.json();
+      return data.drinks ?? [];
+    },
+  });
+
+  return (
+    <Fragment>
+      <Banner
+        title="Popular Cocktails"
+        subtitle="Discover your next favourite drink"
+        backgroundImage={HERO_IMAGE}
+      />
+
+      <section className="popular-cocktails">
+        {isLoading && <p>Loading cocktails...</p>}
+        {isError && <p>{error.message}</p>}
+        {!isLoading && !isError && <CocktailList cocktails={cocktails} />}
+      </section>
+    </Fragment>
+  );
+}
+
+export default HomePage;

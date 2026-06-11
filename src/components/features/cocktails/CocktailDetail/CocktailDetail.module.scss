@@ -1,0 +1,52 @@
+@use '@/styles/scss/abstracts/' as *;
+
+.cocktailMain {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 1rem;
+}
+
+/* Image */
+.imageBox {
+  height: 55vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: $highlightColor;
+
+  .nextImage {
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+  }
+}
+
+/* Content */
+.cocktailContent {
+  padding: 1.5rem;
+  margin: 0;
+
+  h1 {
+    font-size: 2rem;
+    color: $primaryColor;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  strong {
+    color: $primaryColor;
+  }
+}
+
+.cocktailFooter {
+  padding: 1.5rem 0 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
