@@ -6,7 +6,7 @@ import Banner from "@/components/layout/Banner/Banner";
 import CocktailList from "@/components/features/cocktails/CocktailList";
 
 const HERO_IMAGE =
-  "/images/about.avif";
+  "/images/unsplash-about.avif";
 
 function HomePage() {
   const {
